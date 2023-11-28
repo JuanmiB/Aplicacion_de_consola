@@ -46,13 +46,8 @@ console.clear()
   console.log('Seleccione una opción'.green);
   console.log('======================\n'.green);
 
-  const { test } = await inquirer
-    .prompt(questions)
-    .then((answers) => {
-      console.log('\nOrder receipt:');
-      console.log(JSON.stringify(answers, null, '  '))
-      return answers
-    })
+  const { test } = await inquirer.prompt(questions)
+
   
   return test 
 }
@@ -64,4 +59,23 @@ export const nextStep = async() => {
     message: `Presione ${'ENTER'.green} para continuar`
   }]
 await inquirer.prompt(question)
+}
+
+
+export const leerInput = async (message) =>{
+  const question = [
+  {
+    type: 'input',
+    name: 'desc',
+    message,
+    validate( value ){
+      if(value.length === 0){
+        return 'Por favor, ingrese un caracter'
+      }
+      return true
+    } 
+  }
+  ]
+  const { desc } = await inquirer.prompt(question)
+  return desc
 }
