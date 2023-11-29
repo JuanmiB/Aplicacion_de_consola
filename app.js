@@ -31,14 +31,23 @@ const main = async () => {
     
       case '2':
       {
-
-        console.log(tareas.listadoArr) 
+        tareas.listadoCompleta() 
+        break;
+      }
+      case '3':
+      {
+        tareas.taskStatus(true)
+        break;
+      }
+      case '4':
+      {
+        tareas.taskStatus(false)
         break;
       }
     }
     
     await nextStep()
-    // saveFile(tareas.listadoArr)
+    saveFile(tareas.listadoArr)
     } while (opt !== '0')
 }
 main()

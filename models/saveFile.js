@@ -7,11 +7,10 @@ export const saveFile = (data) =>{
 }
 
 export const readFile = () => {
-if (!archivo) {
-    return null, console.log("no");
+if (!fs.existsSync(archivo)) {
+    return null;
 }
     const info = fs.readFileSync(archivo, 'utf-8')
     const parseInfo = JSON.parse(info)
-    console.log( parseInfo );
     return parseInfo
 }
