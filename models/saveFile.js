@@ -2,7 +2,7 @@ import fs from 'fs'
 const archivo = './tareas/tarea.json'
 
 export const saveFile = (data) =>{
-    console.log(data);
+;
     fs.writeFileSync(archivo, JSON.stringify(data))
 }
 

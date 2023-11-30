@@ -15,5 +15,11 @@
     "colors": "1.4.0",
     "inquirer": "9.2.12",
     "uuid": "9.0.1"
+  },
+  "devDependencies": {
+    "standard": "^17.1.0"
+  },
+  "eslintConfig": {
+    "extends": "standard"
   }
 }
