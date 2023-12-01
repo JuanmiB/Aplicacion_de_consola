@@ -73,16 +73,25 @@ export const leerInput = async (message) => {
       }
     }
   ]
+  console.clear()
+  console.log('================='.green)
+  console.log('Escriba su tarea'.green)
+  console.log('=================\n'.green)
   const { desc } = await inquirer.prompt(question)
   return desc
 }
 
 export const menuDeleteTasks = async (tasks = []) => {
-  const choices = tasks.map(task => {
+  const choices = tasks.map((task, index) => {
+    const idx = `${index + 1}.`.green
     return {
       value: task.id,
-      name: task.desc
+      name: `${idx} ${task.desc}`
     }
+  })
+  choices.unshift({
+    value: '0',
+    name: '0.'.red + ' Cancelar'
   })
 
   const question = [
@@ -95,9 +104,9 @@ export const menuDeleteTasks = async (tasks = []) => {
   ]
 
   console.clear()
-  console.log('======================'.red)
+  console.log('==================='.red)
   console.log('Elimine una opción'.red)
-  console.log('======================\n'.red)
+  console.log('===================\n'.red)
 
   const { deleteTask } = await inquirer.prompt(question)
 
@@ -115,4 +124,27 @@ export const confirmAction = async (message) => {
 
   const { ok } = await inquirer.prompt(question)
   return ok
+}
+
+export const checkList = async (tasks = []) => {
+  const choices = tasks.map((task) => {
+    return {
+      value: task.id,
+      name: ` ${task.desc}`,
+      checked: !!(task.completadoEn)
+    }
+  })
+  const question = [
+    {
+      type: 'checkbox',
+      name: 'checklist',
+      message: 'Seleccione lo que quiere',
+      choices
+    }
+  ]
+  console.log('=============================='.green)
+  console.log('Marque o desmarque sus tareas'.green)
+  console.log('==============================\n'.green)
+  const { checklist } = await inquirer.prompt(question)
+  return checklist
 }
